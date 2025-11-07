@@ -1,0 +1,351 @@
+:root {
+  --bg: #fdf6f0;
+  --text: #222;
+  --card: #fff;
+  --accent: #ffb703;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+  --bg: #1a1a1a;
+  --text: #eee;
+  --card: #2a2a2a;
+  --accent: #ffc107;
+  --shadow: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  opacity: 0;
+  animation: fadeIn 1s forwards ease-in-out;
+  background-size: cover;
+  background-position: center;
+  transition: background 1s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* App container */
+.app-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  animation: floatIn 1s ease-in-out;
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 250px;
+  font-size: 16px;
+}
+
+/* 🌈 UNIVERSAL BUTTON STYLE */
+button,
+#tempToggle,
+.remove-btn {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 📍 Fix Detect My Location button layout */
+#searchBtn,
+#detectBtn {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 10px 15px;
+  font-size: 1rem;
+}
+
+/* Hover effect */
+button:hover,
+#searchBtn:hover,
+#detectBtn:hover,
+#tempToggle:hover,
+.remove-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* 🔘 Keep control buttons (C/F, Theme, Favorite) in same row */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  height: 42px;
+}
+
+/* 🔴 Optional: Special color for remove button */
+.remove-btn {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
+  font-size: 0.95rem;
+  height: 42px;
+}
+
+/* Weather cards */
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px var(--shadow);
+  transform: translateY(30px);
+  opacity: 0;
+  animation: slideUp 0.8s forwards;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/* Forecasts */
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.forecast-item {
+  display: flex;
+  justify-content: space-between;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 8px 10px;
+  box-shadow: 0 2px 5px var(--shadow);
+}
+
+/* Favorites */
+.favorites .favorite-item {
+  background: var(--bg);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.favorites .favorite-item:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* =============================
+   🌤️ Attractive Weather Loader
+   ============================= */
+#loading {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.sun-loader {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  animation: rotateSun 1.5s linear infinite;
+}
+
+.sun-core {
+  width: 35px;
+  height: 35px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--accent);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sun-rays {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 4px solid var(--accent);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 20px var(--accent);
+  opacity: 0.6;
+}
+
+@keyframes rotateSun {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  margin-top: 10px;
+  color: #423e3e;
+}
+
+/* 🌈 DYNAMIC WEATHER BACKGROUNDS */
+.sunny {
+  background: linear-gradient(to top, #fddb92, #d1fdff);
+}
+
+.cloudy {
+  background: linear-gradient(to top, #bdc3c7, #2c3e50);
+}
+
+.rainy {
+  background: linear-gradient(to top, #667db6, #0082c8, #0082c8, #667db6);
+}
+
+.snowy {
+  background: linear-gradient(to top, #e0eafc, #cfdef3);
+}
+
+.night {
+  background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+}
+
+/* =============================
+   📱 FULL RESPONSIVE UPDATES
+   ============================= */
+
+/* Mobile defaults */
+.app-container {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .search-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .controls button {
+    flex: 1 1 45%;
+    min-width: 120px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}
+
+/* Tablets and larger */
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 700px;
+  }
+}
+
+/* Favorite items */
+.favorite-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 4px 0;
+  box-shadow: 0 2px 5px var(--shadow);
+  transition: background 0.3s ease;
+}
+
+.favorite-item:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.remove-btn:hover {
+  transform: scale(1.2);
+}

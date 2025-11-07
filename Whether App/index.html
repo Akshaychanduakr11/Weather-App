@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>🌤️ Weather Now</h1>
+    <div class="search-bar">
+  <input id="cityInput" type="text" placeholder="Enter city or village..." />
+ 
+  
+  <!-- Search button -->
+  <button id="searchBtn" title="Search for a city">
+    🔍 Search
+  </button>
+
+  <!-- Detect location button -->
+  <button id="detectBtn" title="Get my current location">
+    📍 Detect My Location
+  </button>
+  
+</div>
+
+
+
+      <div class="controls">
+        <button id="unitToggle">°C / °F</button>
+        <button id="themeToggle">🌓</button>
+        <button id="addFavoriteBtn">⭐ Add Favorite</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="card current-weather">
+        <h2 id="cityName">Your City</h2>
+        <p id="temperature">--°C</p>
+        <p id="description">---</p>
+        <div class="details">
+          <p>Feels like: <span id="feelsLike">--°C</span></p>
+          <p>Humidity: <span id="humidity">--%</span></p>
+          <p>Pressure: <span id="pressure">-- hPa</span></p>
+          <p>Wind: <span id="wind">-- km/h</span></p>
+          <p>Sunrise: <span id="sunrise">--:--</span></p>
+          <p>Sunset: <span id="sunset">--:--</span></p>
+        </div>
+      </section>
+
+      <section class="card hourly-section">
+        <h3>Today’s Hourly Forecast</h3>
+        <div id="hourlyForecast" class="forecast-list"></div>
+      </section>
+
+      <section class="card weekly-section">
+        <h3>7-Day Summary</h3>
+        <div id="weeklyForecast" class="forecast-list"></div>
+      </section>
+
+
+      
+
+      <section class="card favorites">
+        <h3>⭐ Favorite Cities</h3>
+        <div id="favoriteCities"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built by — Akshay  powered by OpenWeatherMap 🌎</p>
+    </footer>
+  </div>
+
+
+  <script src="script.js"></script>
+  <div id="loading">
+  <div class="sun-loader">
+    <div class="sun-core"></div>
+    <div class="sun-rays"></div>
+  </div>
+</div>
+</body>
+</html>
